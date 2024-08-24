@@ -54,7 +54,7 @@ public class EmployeeService
                     return;
                 }
             }
-            System.out.println("Enter the employee name of the ID "  + employeeId + " : ");
+            System.out.println(ORANGE + "Enter the employee name of the ID "  + employeeId + " : " + RESET);
             String employeeName = sc.nextLine();
             employees[noOfEmployees][0] = employeeId;
             employees[noOfEmployees][1] = employeeName;
@@ -69,7 +69,31 @@ public class EmployeeService
 
     public void deleteEmployee()
     {
+        while( true )
+        {
+            System.out.println( ORANGE + "Enter the employee ID to delete: " + RESET );
+            String employeeId = sc.nextLine();
+            boolean employeeFound = false;
 
+            for( int i = 0; i < noOfEmployees; i++ )
+            {
+                if( employees[i][0].equals( employeeId ) )
+                {
+                    employees[i][0] = employees[noOfEmployees - 1][0];
+                    employees[i][1] = employees[noOfEmployees - 1][1];
+                    noOfEmployees--;
+                    System.out.println( CYAN + "Student deleted Successfully!" + RESET );
+                    employeeFound = true;
+                    break;
+                }
+            }
+            if( !employeeFound )
+            {
+                System.out.println( CYAN + "Employee not found. Please enter a valid employee ID." + RESET );
+                continue;
+            }
+            break;
+        }
     }
 
     public void findEmployee()
