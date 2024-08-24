@@ -1,5 +1,6 @@
 package com.service;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
@@ -142,7 +143,56 @@ public class EmployeeService
 
     public void loadEmployeesFromTheFile()
     {
+        System.out.println(ORANGE + "Enter an accurate file name to load employee data: ");
+        String fileName = sc.nextLine();
 
+        File file = new File(fileName);
+        try
+        {
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine())
+            {
+                String line = fileScanner.nextLine();
+                String[] employeeData = line.split(",");
+                if (employeeData.length != 2)
+                {
+                    System.out.println(CYAN + "Invalid employee data format in the file. Skipped" + RESET);
+                    continue;
+                }
+                String employeeId = employeeData[0];
+                String employeeName = employeeData[1];
+
+                if (employeeId.length() != 8 || !employeeId.startsWith("w"))
+                {
+                    System.out.println(CYAN + "Invalid employee ID in the file. Skipped" + RESET);
+                    continue;
+                }
+
+                boolean employeeExists = false;
+                for (int i =0; i < noOfEmployees; i++)
+                {
+                    if (employeeId.equals( employees[i][0] ))
+                    {
+                        System.out.println(CYAN + "Employee ID - " + employeeId + " already exists in the system. Skipped."  + RESET);
+                        employeeExists = true;
+                        break;
+                    }
+
+                }
+                if (!employeeExists)
+                {
+                    employees[noOfEmployees][0] = employeeData[0];
+                    employees[noOfEmployees][1] = employeeData[1];
+                    noOfEmployees++;
+                }
+
+            }
+            System.out.println(CYAN + "Employees loaded from the file successfully!" + RESET);
+        }
+        catch (Exception e)
+        {
+            System.out.println(CYAN + "An error occurred while loading the employees from the file." + e.getMessage() + RESET);
+        }
     }
 
     public void viewTheEmployees()
