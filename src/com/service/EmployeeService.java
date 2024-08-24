@@ -98,7 +98,29 @@ public class EmployeeService
 
     public void findEmployee()
     {
+        while( true )
+        {
+            System.out.println( ORANGE + "Enter the employee ID to find: " + RESET );
+            String employeeId = sc.nextLine();
+            boolean employeeFound = false;
 
+            for( int i = 0; i < noOfEmployees; i++ )
+            {
+                if( employees[i][0].equals( employeeId ) )
+                {
+                    System.out.println( CYAN + "Employee ID: " + employees[i][0] + RESET );
+                    System.out.println( CYAN + "Employee Name: " + employees[i][1] + RESET );
+                    employeeFound = true;
+                    break;
+                }
+            }
+            if( !employeeFound )
+            {
+                System.out.println( CYAN + "Employee not found. Please enter a valid employee ID." + RESET );
+                continue;
+            }
+            break;
+        }
     }
 
     public void storeEmployeesInAFile()
