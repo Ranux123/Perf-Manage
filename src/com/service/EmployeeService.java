@@ -1,5 +1,6 @@
 package com.service;
 
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class EmployeeService
@@ -125,7 +126,18 @@ public class EmployeeService
 
     public void storeEmployeesInAFile()
     {
-
+        try( FileWriter file = new FileWriter( "employee.txt" ) )
+        {
+            for( int i = 0; i < noOfEmployees; i++ )
+            {
+                file.write( employees[i][0] + "," + employees[i][1] + "\n" );
+            }
+            System.out.println( CYAN + "Employees stored in the file successfully!" + RESET );
+        }
+        catch( Exception e )
+        {
+            System.out.println( CYAN + "An error occurred while storing the employees in the file." + RESET );
+        }
     }
 
     public void loadEmployeesFromTheFile()
