@@ -26,7 +26,7 @@ public class EmployeeManagementSystem
             System.out.println( GREEN + "5.  Store employee information into an external file." + RESET );
             System.out.println( GREEN + "6.  Load employee details from an external file." + RESET );
             System.out.println( GREEN + "7.  View a list of registered employees." + RESET );
-            System.out.println( GREEN + "8.  Add an employee and their Marks . Summary Report . Complete Report" + RESET );
+            System.out.println( GREEN + "8.  Add an employee and their Project scores . Summary Report . Complete Report" + RESET );
             System.out.println( GREEN + "9.  Exit the Programme." + RESET );
             System.out.println();
             System.out.print( ORANGE + "Enter a option in order to proceed: " + RESET );

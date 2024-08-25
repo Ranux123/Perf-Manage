@@ -11,17 +11,17 @@ public class Project
         this.projectPerformance[2] = score3;
     }
 
-    public int getscore1()
+    public int getScore1()
     {
         return projectPerformance[0];
     }
 
-    public int getscore2()
+    public int getScore2()
     {
         return projectPerformance[1];
     }
 
-    public int getscore3()
+    public int getScore3()
     {
         return projectPerformance[2];
     }

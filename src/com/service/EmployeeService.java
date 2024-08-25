@@ -20,7 +20,7 @@ public class EmployeeService
   private int totalVacancies = 40;
   private int totalVacanciesObject = 40;
   private String[][] employees = new String[totalVacancies][2];
-  private String[] employeesObject = new String[totalVacanciesObject];
+  private Employee[] employeesObject = new Employee[totalVacanciesObject];
   private int noOfEmployees = 0;
   private int noOfEmployeesObject = 0;
 
@@ -287,7 +287,7 @@ public class EmployeeService
       Project project = new Project( score1, score2, score3 );
       employee.setProject( project );
 
-      employeesObject[noOfEmployeesObject] = employeeId;
+      employeesObject[noOfEmployeesObject] = employee;
       noOfEmployeesObject++;
 
       break;
@@ -296,11 +296,58 @@ public class EmployeeService
 
   public void generateSummaryReport()
   {
+    System.out.println(PURPLE + "-+-+-+-+- Summary Report -+-+-+-+-" + RESET);
+    System.out.println(PURPLE + "Total Student Registration: " + RESET + PINK + noOfEmployeesObject + RESET);
 
+    int passedEmployees = 0;
+    int failedEmployees = 0;
+    for (int i = 0; i < totalVacanciesObject; i++)
+    {
+      Employee employee = employeesObject[i];
+      if (employee != null && employee.getProject() != null)
+      {
+        Project project = employee.getProject();
+        if (project.getScore1() >= 40 && project.getScore2() >= 40 && project.getScore3() >= 40)
+        {
+          passedEmployees++;
+        }
+        else
+        {
+          failedEmployees++;
+        }
+      }
+    }
+    System.out.println(PURPLE + "Total Students Passed: " + RESET + PINK + passedEmployees + RESET);
+    System.out.println(PURPLE + "Total Students Failed: " + RESET + PINK + failedEmployees + RESET);
+    System.out.println(PURPLE + "-+-+-+-+-+-+-+-+ -+-+-+-+-+-+-+-+" + RESET);
   }
 
   public void generateCompleteReport()
   {
+    System.out.println( PURPLE + "\t\t-+-+-+-+-+-+-+-+-+-+-+-+-+-+- Complete Report -+-+-+-+-+-+-+-+-+-+-+-+-+-+-" + RESET );
+    System.out.println( PURPLE + "ID\t\t\tName\t\tModule 1\tModule 2\tModule 3\tTotal\t\tGrade -> Average" + RESET );
 
+    EmployeeUtils.bubbleSortAverageScore( employeesObject );
+
+    ProjectService projectService = new ProjectService();
+
+    for( int i = 0; i < noOfEmployeesObject; i++ )
+    {
+      Employee employee = employeesObject[i];
+      if( employee != null && employee.getProject() != null )
+      {
+        Project project = employee.getProject();
+        int totalScore = projectService.calculateTotalScore( project.getScore1(), project.getScore2(), project.getScore3() );
+        String grade = projectService.calculateGradeScore( project.getScore1(), project.getScore2(), project.getScore3() );
+        System.out.println( PINK +  employee.getEmployeeId() + "\t" +
+                                    employee.getEmployeeName() + "\t\t" +
+                                    project.getScore1() + "\t\t\t" +
+                                    project.getScore2() + "\t\t\t" +
+                                    project.getScore3() + "\t\t\t" +
+                                    totalScore + "\t\t\t" +
+                                    grade + RESET );
+
+      }
+    }
   }
 }

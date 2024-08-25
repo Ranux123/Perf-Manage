@@ -1,5 +1,8 @@
 package com.utils;
 
+import com.model.Employee;
+import com.service.ProjectService;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,5 +29,27 @@ public class EmployeeUtils
       }
     }
     return mark;
+  }
+
+  public static void bubbleSortAverageScore( Employee[] employeesObject)
+  {
+    ProjectService projectService = new ProjectService();
+    for (int i = 0; i < employeesObject.length - 1; i++ )
+    {
+      for (int j = 0; j < employeesObject.length - i - 1; j++)
+      {
+        if (employeesObject[j] != null && employeesObject[j + 1] != null)
+        {
+          double averageScore1 = projectService.calculateAverageScore(employeesObject[j].getProject().getScore1() , employeesObject[j].getProject().getScore2(), employeesObject[j].getProject().getScore3());
+          double averageScore2 = projectService.calculateAverageScore(employeesObject[j+1].getProject().getScore1() , employeesObject[j+1].getProject().getScore2(), employeesObject[j+1].getProject().getScore3());
+          if (averageScore2 < averageScore1)
+          {
+            Employee temp = employeesObject[j];
+            employeesObject[j] = employeesObject[j+1];
+            employeesObject[j+1] = temp;
+          }
+        }
+      }
+    }
   }
 }
