@@ -65,7 +65,7 @@ public class EmployeeManagementSystem
                     employeeService.viewTheEmployees();
                     break;
                 case 8: //Handling the Task 2 & Task 3 features as sub-options of option 8 as a, b, c
-                    System.out.print( ORANGE + "Enter a sub-option (a -> Add Students and Scores), (b -> Summary Report), (c -> Complete Report): " + RESET );
+                    System.out.print( ORANGE + "Enter a sub-option (a -> Add Employees and Scores), (b -> Summary Report), (c -> Complete Report): " + RESET );
                     String opt2 = sc.nextLine().toLowerCase();
                     switch( opt2 )
                     {

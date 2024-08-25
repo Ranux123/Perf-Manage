@@ -1,5 +1,9 @@
 package com.service;
 
+import com.model.Employee;
+import com.model.Project;
+import com.utils.EmployeeUtils;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -234,7 +238,60 @@ public class EmployeeService
 
   public void addEmployeeAndScores()
   {
+    String employeeId;
+    if( noOfEmployeesObject == totalVacanciesObject )
+    {
+      System.out.println( CYAN + "No vacancies left." + RESET );
+      return;
+    }
+    while( noOfEmployeesObject < totalVacanciesObject )
+    {
+      while( true )
+      {
+        System.out.println( ORANGE + "Enter the employee ID: " + RESET );
+        employeeId = sc.nextLine();
+        if( !( employeeId.length() == 8 && employeeId.startsWith( "w" ) ) )
+        {
+          System.out.println( CYAN + "Please enter a valid employee ID." + RESET );
+          continue;
+        }
 
+        boolean employeeExists = false;
+        for( int i = 0; i < noOfEmployeesObject; i++ )
+        {
+          if( employeesObject[i].equals( employeeId ) )
+          {
+            employeeExists = true;
+            break;
+          }
+        }
+
+        if( employeeExists )
+        {
+          System.out.println( CYAN + "Employee ID already exists. Please enter another." + RESET );
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      System.out.println( ORANGE + "Enter the employee name of the ID " + employeeId + " : " + RESET );
+      String employeeName = sc.nextLine();
+
+      Employee employee = new Employee( employeeName, employeeId );
+      int score1 = EmployeeUtils.getProjectScore( sc, 1, employeeId );
+      int score2 = EmployeeUtils.getProjectScore( sc, 2, employeeId );
+      int score3 = EmployeeUtils.getProjectScore( sc, 3, employeeId );
+
+      Project project = new Project( score1, score2, score3 );
+      employee.setProject( project );
+
+      employeesObject[noOfEmployeesObject] = employeeId;
+      noOfEmployeesObject++;
+
+      break;
+    }
   }
 
   public void generateSummaryReport()

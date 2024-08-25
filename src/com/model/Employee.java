@@ -3,10 +3,10 @@ package com.model;
 public class Employee
 {
     private String employeeName;
-    private int employeeId;
+    private String employeeId;
     private Project project;
 
-    public Employee(String employeeName, int employeeId )
+    public Employee(String employeeName, String employeeId )
     {
         this.employeeName = employeeName;
         this.employeeId = employeeId;
@@ -22,13 +22,23 @@ public class Employee
         return this.employeeName = employeeName;
     }
 
-    public int getEmployeeId()
+    public String getEmployeeId()
     {
         return employeeId;
     }
 
-    public int setEmployeeId( int employeeId)
+    public String setEmployeeId( String employeeId)
     {
         return this.employeeId = employeeId;
+    }
+
+    public Project getProject()
+    {
+        return project;
+    }
+
+    public void setProject( Project project )
+    {
+        this.project = project;
     }
 }
