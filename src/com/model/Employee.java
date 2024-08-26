@@ -6,10 +6,17 @@ public class Employee
     private String employeeId;
     private Project project;
 
-    public Employee(String employeeName, String employeeId )
+    public Employee( String employeeName, String employeeId )
     {
         this.employeeName = employeeName;
         this.employeeId = employeeId;
+    }
+
+    public Employee( String employeeName, String employeeId, Project project )
+    {
+        this.employeeName = employeeName;
+        this.employeeId = employeeId;
+        this.project = project;
     }
 
     public String getEmployeeName()

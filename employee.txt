@@ -1,9 +1,6 @@
-w2083750,Ranuth
-w2083751,Henuka
-w2083752,Hirush
-w2083752,Rometh
-w2083752,Dinuka
 w2083755,Binov
-w2083756,Mishal
-w2083757,Yasith
+w2083751,Henuka
 w2083758,Isira
+w2083756,Mishal
+w2083750,Ranuth
+w2083757,Yasith
