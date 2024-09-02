@@ -26,12 +26,18 @@ public class EmployeeService
 
   Scanner sc = new Scanner( System.in );
 
+  /**
+   * This method is used to check the available vacancies in the system.
+   */
   public void checkAvailableVacancies()
   {
     int availableVacancies = totalVacancies - noOfEmployees;
     System.out.println( CYAN + "Available Seats: " + availableVacancies + RESET );
   }
 
+  /**
+   * This method is used to register an employee with the ID.
+   */
   public void registerEmployee()
   {
     String employeeId = "";
@@ -44,7 +50,7 @@ public class EmployeeService
 
         if( !( employeeId.length() == 8 && employeeId.startsWith( "w" ) ) )
         {
-          System.out.println( CYAN + "Please enter a valid employee ID." + RESET );
+          System.out.println( CYAN + "Please enter a valid employee ID of 8 characters which starts with w (w#######)" + RESET );
         }
         else
         {
@@ -73,6 +79,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to delete an employee from the system.
+   */
   public void deleteEmployee()
   {
     while( true )
@@ -88,7 +97,7 @@ public class EmployeeService
           employees[i][0] = employees[noOfEmployees - 1][0];
           employees[i][1] = employees[noOfEmployees - 1][1];
           noOfEmployees--;
-          System.out.println( CYAN + "Student deleted Successfully!" + RESET );
+          System.out.println( CYAN + "Employee deleted Successfully!" + RESET );
           employeeFound = true;
           break;
         }
@@ -102,6 +111,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to find an employee by ID.
+   */
   public void findEmployee()
   {
     while( true )
@@ -129,6 +141,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to store the employees in a file.
+   */
   public void storeEmployeesInAFile()
   {
     try( FileWriter file = new FileWriter( "employee.txt" ) )
@@ -145,6 +160,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to load the employees from the file.
+   */
   public void loadEmployeesFromTheFile()
   {
     System.out.println( ORANGE + "Enter an accurate file name to load employee data: " );
@@ -199,6 +217,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to view the employees.
+   */
   public void viewTheEmployees()
   {
     if( noOfEmployees == 0 )
@@ -236,6 +257,9 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to add an employee and their project scores.
+   */
   public void addEmployeeAndScores()
   {
     String employeeId;
@@ -294,10 +318,13 @@ public class EmployeeService
     }
   }
 
+  /**
+   * This method is used to generate the summary report.
+   */
   public void generateSummaryReport()
   {
     System.out.println(PURPLE + "-+-+-+-+- Summary Report -+-+-+-+-" + RESET);
-    System.out.println(PURPLE + "Total Student Registration: " + RESET + PINK + noOfEmployeesObject + RESET);
+    System.out.println(PURPLE + "Total Employee Registration: " + RESET + PINK + noOfEmployeesObject + RESET);
 
     int passedEmployees = 0;
     int failedEmployees = 0;
@@ -317,15 +344,18 @@ public class EmployeeService
         }
       }
     }
-    System.out.println(PURPLE + "Total Students Passed: " + RESET + PINK + passedEmployees + RESET);
-    System.out.println(PURPLE + "Total Students Failed: " + RESET + PINK + failedEmployees + RESET);
+    System.out.println(PURPLE + "Total Employees Passed: " + RESET + PINK + passedEmployees + RESET);
+    System.out.println(PURPLE + "Total Employees Failed: " + RESET + PINK + failedEmployees + RESET);
     System.out.println(PURPLE + "-+-+-+-+-+-+-+-+ -+-+-+-+-+-+-+-+" + RESET);
   }
 
+  /**
+   * This method is used to generate the complete report.
+   */
   public void generateCompleteReport()
   {
     System.out.println( PURPLE + "\t\t-+-+-+-+-+-+-+-+-+-+-+-+-+-+- Complete Report -+-+-+-+-+-+-+-+-+-+-+-+-+-+-" + RESET );
-    System.out.println( PURPLE + "ID\t\t\tName\t\tModule 1\tModule 2\tModule 3\tTotal\t\tGrade -> Average" + RESET );
+    System.out.println( PURPLE + "ID\t\t\tName\t\tProject 1\tProject 2\tProject 3\tTotal\t\tGrade -> Average" + RESET );
 
     EmployeeUtils.bubbleSortAverageScore( employeesObject );
 
@@ -346,7 +376,6 @@ public class EmployeeService
                                     project.getScore3() + "\t\t\t" +
                                     totalScore + "\t\t\t" +
                                     grade + RESET );
-
       }
     }
   }

@@ -45,23 +45,23 @@ public class EmployeeManagementSystem
                 case 1: //Available Seats Feature.
                     employeeService.checkAvailableVacancies();
                     break;
-                case 2: //Register Students Feature.
+                case 2: //Register Employees Feature.
 
                     employeeService.registerEmployee();
                     break;
-                case 3: //Delete a Student from the system.
+                case 3: //Delete an Employee from the system.
                     employeeService.deleteEmployee();
                     break;
-                case 4: //Find a student by Student ID.
+                case 4: //Find an Employee by Employee ID.
                     employeeService.findEmployee();
                     break;
-                case 5: //Store the Students in a File.
+                case 5: //Store the Employees in a File.
                     employeeService.storeEmployeesInAFile();
                     break;
-                case 6: //Load Students from the File to the System.
+                case 6: //Load Employees from the File to the System.
                     employeeService.loadEmployeesFromTheFile();
                     break;
-                case 7: //View the registered Students List sorted by Name.
+                case 7: //View the registered Employees List sorted by Name.
                     employeeService.viewTheEmployees();
                     break;
                 case 8: //Handling the Task 2 & Task 3 features as sub-options of option 8 as a, b, c
